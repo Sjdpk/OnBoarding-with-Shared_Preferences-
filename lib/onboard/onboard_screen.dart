@@ -1,0 +1,121 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:login_register/screens/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:get/get.dart';
+import 'controller.dart';
+
+class OnBoardScreen extends StatelessWidget {
+  const OnBoardScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final _controller = OnBoardController();
+    // Future _storeOnboardInfo() async {
+    //   int isViewed = 0;
+    //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+    //   prefs.setInt('onBoard', isViewed);
+    // }
+    _storeOnboardInfo() async {
+      // ignore: avoid_print
+      print("Shared pref called");
+      int isViewed = 0;
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setInt('onBoard', isViewed);
+      // ignore: avoid_print
+      print(prefs.getInt('onBoard'));
+    }
+
+    return Scaffold(
+        body: SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            PageView.builder(
+              onPageChanged: _controller.selectedPageIndex,
+              itemCount: _controller.screens.length,
+              itemBuilder: (context, index) {
+                // ignore: avoid_unnecessary_containers
+                return Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(_controller.screens[index].imagePath),
+                      Text(_controller.screens[index].title),
+                      Text(_controller.screens[index].description)
+                    ],
+                  ),
+                );
+              },
+            ),
+            Positioned(
+              bottom: 8,
+              left: 10,
+              child: TextButton(
+                child: const Text('Skip'),
+                onPressed: () {
+                  _storeOnboardInfo();
+                  // Get.off(const HomePage());
+                  Get.off(() => const HomePage());
+                },
+              ),
+            ),
+            Positioned(
+              bottom: 20,
+              left: MediaQuery.of(context).size.width / 2.5,
+              child: Row(
+                children: List.generate(
+                  _controller.screens.length,
+                  (index) => Obx(() {
+                    return Container(
+                      margin: const EdgeInsets.all(4),
+                      width: 12,
+                      height: 12,
+                      decoration: BoxDecoration(
+                        color: _controller.selectedPageIndex.value == index
+                            ? Colors.red
+                            : Colors.grey,
+                        shape: BoxShape.circle,
+                      ),
+                    );
+                  }),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 8.0,
+              right: 20,
+              child: Obx(
+                () {
+                  return TextButton(
+                    child: _controller.selectedPageIndex.value ==
+                            _controller.screens.length - 1
+                        ? const Text('Start')
+                        : const Text('Next'),
+                    // onPressed: () {
+                    //   _controller.selectedPageIndex.value ==
+                    //           _controller.screens.length - 1
+                    //       ? Get.off(
+                    //           () => const HomePage(),
+                    //         )
+                    //       : null;
+                    // },
+                    onPressed: () {
+                      if (_controller.selectedPageIndex.value ==
+                          _controller.screens.length - 1) {
+                        _storeOnboardInfo();
+                        Get.off(() => const HomePage());
+                      } else {
+                        null;
+                      }
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    ));
+  }
+}
