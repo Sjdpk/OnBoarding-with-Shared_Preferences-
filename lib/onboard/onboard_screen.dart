@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_register/screens/home_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:get/get.dart';
 import 'controller.dart';
 
 class OnBoardScreen extends StatelessWidget {
   OnBoardScreen({Key? key}) : super(key: key);
   final _controller = OnBoardController();
-  _storeOnboardInfo() async {
-    // ignore: avoid_print
-    print("Shared pref called");
-    int isViewed = 0;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('onBoard', isViewed);
-    // ignore: avoid_print
-    print(prefs.getInt('onBoard'));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +39,9 @@ class OnBoardScreen extends StatelessWidget {
               child: TextButton(
                 child: const Text('Skip'),
                 onPressed: () {
-                  _storeOnboardInfo();
+                  _controller.storeOnboardInfo();
                   // Get.off(const HomePage());
-                  Get.off(() => const HomePage());
+                  Get.off(() => HomePage());
                 },
               ),
             ),
@@ -95,7 +85,7 @@ class OnBoardScreen extends StatelessWidget {
                     //       : null;
                     // },
                     onPressed: () {
-                      _controller.forwardAction(const HomePage());
+                      _controller.forwardAction(HomePage());
                     },
                   );
                 },
