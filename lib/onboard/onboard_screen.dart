@@ -6,32 +6,27 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'controller.dart';
 
 class OnBoardScreen extends StatelessWidget {
-  const OnBoardScreen({Key? key}) : super(key: key);
+  OnBoardScreen({Key? key}) : super(key: key);
+  final _controller = OnBoardController();
+  _storeOnboardInfo() async {
+    // ignore: avoid_print
+    print("Shared pref called");
+    int isViewed = 0;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('onBoard', isViewed);
+    // ignore: avoid_print
+    print(prefs.getInt('onBoard'));
+  }
 
   @override
   Widget build(BuildContext context) {
-    final _controller = OnBoardController();
-    // Future _storeOnboardInfo() async {
-    //   int isViewed = 0;
-    //   final SharedPreferences prefs = await SharedPreferences.getInstance();
-    //   prefs.setInt('onBoard', isViewed);
-    // }
-    _storeOnboardInfo() async {
-      // ignore: avoid_print
-      print("Shared pref called");
-      int isViewed = 0;
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setInt('onBoard', isViewed);
-      // ignore: avoid_print
-      print(prefs.getInt('onBoard'));
-    }
-
     return Scaffold(
         body: SafeArea(
       child: Scaffold(
         body: Stack(
           children: [
             PageView.builder(
+              controller: _controller.pageController,
               onPageChanged: _controller.selectedPageIndex,
               itemCount: _controller.screens.length,
               itemBuilder: (context, index) {
@@ -88,8 +83,7 @@ class OnBoardScreen extends StatelessWidget {
               child: Obx(
                 () {
                   return TextButton(
-                    child: _controller.selectedPageIndex.value ==
-                            _controller.screens.length - 1
+                    child: _controller.isLastPage
                         ? const Text('Start')
                         : const Text('Next'),
                     // onPressed: () {
@@ -101,13 +95,7 @@ class OnBoardScreen extends StatelessWidget {
                     //       : null;
                     // },
                     onPressed: () {
-                      if (_controller.selectedPageIndex.value ==
-                          _controller.screens.length - 1) {
-                        _storeOnboardInfo();
-                        Get.off(() => const HomePage());
-                      } else {
-                        null;
-                      }
+                      _controller.forwardAction(const HomePage());
                     },
                   );
                 },

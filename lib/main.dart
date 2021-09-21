@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: isViewed != 0 ? const OnBoardScreen() : const HomePage(),
-      home: isViewed != 0 ? const OnBoardScreen() : const HomePage(),
+      home: isViewed != 0 ? OnBoardScreen() : const HomePage(),
     );
   }
 }
