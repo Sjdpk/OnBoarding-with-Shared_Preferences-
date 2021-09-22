@@ -5,8 +5,8 @@ Only First Time of Application Lunch
 A new Flutter project.
 
 ## Getting Started
-
-![alt text](https://github.com/Sjdpk/OnBoarding-with-Shared_Preferences-/blob/main/Screenshot/onboard_Screen.jpg)
+![alt text](https://github.com/Sjdpk/OnBoarding-with-Shared_Preferences-/blob/dynamic_theme/Screenshot/light.png)
+![alt text](https://github.com/Sjdpk/OnBoarding-with-Shared_Preferences-/blob/dynamic_theme/Screenshot/dark.png)
 
 This project is a starting point for a Flutter application.
 
