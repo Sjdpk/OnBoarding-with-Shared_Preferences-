@@ -1,5 +1,5 @@
 # Flutter OnBoarding Screen 
-Flutter Onboarding tutorial with GetX and  Shared Preferences
+Flutter Onboarding with GetX and  Shared Preferences
 Only First Time of Application Lunch 
 
 A new Flutter project.
