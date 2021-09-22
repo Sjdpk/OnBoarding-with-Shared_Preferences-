@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:login_register/screens/main_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'screens/screens.dart';
 import 'onboard/onboard.dart';
 
 int? isViewed;
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       // darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.system,
       // Theme mode depends on device settings at the beginning
-      home: isViewed != 0 ? OnBoardScreen() : HomePage(),
+      home: isViewed != 0 ? OnBoardScreen() : MainScreen(),
     );
   }
 }

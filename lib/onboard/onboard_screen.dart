@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login_register/screens/home_page.dart';
+import 'package:login_register/screens/main_screen.dart';
 // import 'package:get/get.dart';
 import 'controller.dart';
 
@@ -41,7 +41,7 @@ class OnBoardScreen extends StatelessWidget {
                 onPressed: () {
                   _controller.storeOnboardInfo();
                   // Get.off(const HomePage());
-                  Get.off(() => HomePage());
+                  Get.off(() => MainScreen());
                 },
               ),
             ),
@@ -85,7 +85,7 @@ class OnBoardScreen extends StatelessWidget {
                     //       : null;
                     // },
                     onPressed: () {
-                      _controller.forwardAction(HomePage());
+                      _controller.forwardAction(MainScreen());
                     },
                   );
                 },
