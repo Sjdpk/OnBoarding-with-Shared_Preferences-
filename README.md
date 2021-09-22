@@ -1,6 +1,6 @@
 # Flutter NavBar Screen 
 Flutter Navbar with GetX 
-Only First Time of Application Lunch 
+
 
 A new Flutter project.
 
