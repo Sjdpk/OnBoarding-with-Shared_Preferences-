@@ -6,7 +6,9 @@ A new Flutter project.
 
 ## Getting Started
 
-![alt text](https://github.com/Sjdpk/OnBoarding-with-Shared_Preferences-/blob/main/Screenshot/onboard_Screen.jpg)
+![alt text](https://github.com/Sjdpk/OnBoarding-with-Shared_Preferences-/blob/main/Screenshot/first_page.png)
+![alt text](https://github.com/Sjdpk/OnBoarding-with-Shared_Preferences-/blob/main/Screenshot/second_page.png)
+
 
 This project is a starting point for a Flutter application.
 
